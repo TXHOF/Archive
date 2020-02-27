@@ -1,4 +1,4 @@
-package com.txhof.archive.spring.config;
+package com.txhof.archive.config;
 
 import javax.sql.DataSource;
 
@@ -11,7 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@ComponentScan("com.txhof.archive.spring")
+@ComponentScan("com.txhof.archive.config")
 @PropertySource("classpath:database.properties")
 public class AppConfig {
 
