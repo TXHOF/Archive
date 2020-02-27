@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 	MatSliderModule,
 	MatToolbarModule,
 	MDBBootstrapModule.forRoot(),
+	MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
