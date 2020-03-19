@@ -9,11 +9,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
+import { SearchPageComponent } from './search-page/search-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
