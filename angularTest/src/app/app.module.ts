@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,15 +11,19 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { UniqueVRLComponent } from './unique-vrl/unique-vrl.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    UniqueVRLComponent
   ],
   imports: [
     BrowserModule,
+	HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
 	MatSliderModule,

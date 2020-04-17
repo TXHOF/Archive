@@ -25,21 +25,25 @@
 </style>
 <!-- change -->'
 
-<p>This is modified by "landing page"</p>
+<!--<p>This is modified by "landing page"</p> -->
+
 <div class="toolbar">
 <mat-toolbar color="primary">  
   <mat-toolbar-row>
-    <img src="https://www.va.gov/img/homepage/va-logo-white.png" height="70" width="400"> 
+  <!-- logo needs to be transparent or background needs to be white" -->
+    <img src="assets/images/tvhof_logo.jpg" height="70"> 
   </mat-toolbar-row>
   <mat-toolbar-row>
-	<button mat-button [matMenuTriggerFor]="menu">Navigation</button>
-	<button mat-button [matMenuTriggerFor]="menu">Navigation</button>
-	<button mat-button [matMenuTriggerFor]="menu">Navigation</button>
-	<button mat-button [matMenuTriggerFor]="menu">Navigation</button>
+	<button mat-button [matMenuTriggerFor]="menu">Search</button>
 	<mat-menu #menu="matMenu">
-	<button mat-menu-item routerLink="/landingpage" routerLinkActive="active">>Navigation 2</button>
-	<button mat-menu-item>Navigation 2</button>
+	<button mat-menu-item routerLink="/search" routerLinkActive="active">Search Page</button>
+	<button mat-menu-item routerLink="/vrl" routerLinkActive="active">VRL</button>
 	</mat-menu>
+	<button mat-button [matMenuTriggerFor]="menu">Navigation</button>
+	
+	<button mat-button [matMenuTriggerFor]="menu">Navigation</button>
+	<button mat-button [matMenuTriggerFor]="menu">Navigation</button>
+	
 
 	</mat-toolbar-row>
 </mat-toolbar>
@@ -48,7 +52,7 @@
 
 <div class="backgroundImage">
   <img src="https://klendalaw.com/wp-content/uploads/2018/11/Veterans-Day-500x281.jpg" style="width:100%">
-  <div class="centered">Welcome to Texas Veterans Hall of Fame</div>
+  <div class="centered" color="black">Welcome to Texas Veterans Hall of Fame</div>
 </div>
 
 
