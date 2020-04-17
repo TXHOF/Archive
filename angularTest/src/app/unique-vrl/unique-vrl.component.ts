@@ -16,18 +16,18 @@ class veteran {
 
 
 @Component({
-  //selector: 'app-unique-vrl',
-  //templateUrl: './unique-vrl.component.html',
-  //styleUrls: ['./unique-vrl.component.css']
-  selector: 'veterans',
-  template: `
+  selector: 'app-unique-vrl',
+  templateUrl: './unique-vrl.component.html',
+  styleUrls: ['./unique-vrl.component.css']
+  //selector: 'veterans',
+  /*template: `
   <ul *ngIf="veteransObservable | async as veterans else empty">
   <li *ngFor="let veteran of veterans">
   
   </li>
   </ul>
   <ng-template #empty> No Veterans Yet </ng-template> 
-`})
+`*/})
 
 export class UniqueVRLComponent implements OnInit {
 	
@@ -39,6 +39,7 @@ export class UniqueVRLComponent implements OnInit {
 	  this.veteransObservable = this.httpClient
 	  .get<veteran[]>("http://localhost:3000/veterans")
 	  //.do(console.log);
+	  //tap((console.log('test')))
 	  tap(() => {
 		console.log('test')
 	  })//.subscribe(_ => console.log("water is flowing!"));
