@@ -12,16 +12,19 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { UniqueVRLComponent } from './unique-vrl/unique-vrl.component';
-
+import {LogInComponent} from "./log-in/log-in.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     SearchPageComponent,
-    UniqueVRLComponent
+    UniqueVRLComponent,
+    LogInComponent
   ],
   imports: [
+
     BrowserModule,
 	HttpClientModule,
     AppRoutingModule,
@@ -30,6 +33,7 @@ import { UniqueVRLComponent } from './unique-vrl/unique-vrl.component';
 	MatToolbarModule,
 	MDBBootstrapModule.forRoot(),
 	MatMenuModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
