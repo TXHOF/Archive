@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ArchiveApplication<archive>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.txhof.archive.ArchiveApplication",
+            "projectName": "archive",
+            "args": ""
+        }
+    ]
+}
