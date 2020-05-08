@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { UniqueVRLComponent } from './unique-vrl/unique-vrl.component';
-import {LogInComponent} from "./log-in/log-in.component";
+import {LogInComponent} from './log-in/log-in.component';
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
