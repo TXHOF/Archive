@@ -14,14 +14,7 @@
 	<artifactId>archive</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-<!--
-	<name>archive</name>
-	<description>Veteran Archive Project</description>
 
-	<properties>
-		<java.version>11</java.version>
-	</properties>
--->
 	<modules>
 		<module>backend</module>
 		<module>frontend</module>

@@ -22,10 +22,10 @@ public class SecurityConfiguration {
                 .anyRequest()
                 .permitAll();
         }
-    }    
+    }
     
     @Configuration
-    @Order(2)                                                        
+    @Order(2)
     public static class AngularResourcesWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/assets/images/**")                             
@@ -33,10 +33,10 @@ public class SecurityConfiguration {
                 .anyRequest()
                 .permitAll();
         }
-    }  
-  
+    }
+    
     @Configuration     
-    @Order(3)                                              
+    @Order(3)  
     public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
   
         @Override

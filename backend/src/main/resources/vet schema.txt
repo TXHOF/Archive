@@ -1,0 +1,36 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+DROP TABLE veterans;
+CREATE TABLE veterans (
+    uid uuid DEFAULT uuid_generate_v1(),
+    firstName TEXT,
+    lastName TEXT,
+    serviceNumber TEXT,
+    rank TEXT,
+    branch TEXT,
+    militaryInfo TEXT,
+    deployments TEXT,
+    bio TEXT,
+    bioExtended TEXT,
+    primaryImage TEXT,
+    otherImages TEXT,
+    additionalLinks TEXT,
+    deceased boolean,
+    deathDate TEXT,
+    deathLocation TEXT, 
+    internmentLocation TEXT,
+    internmentGeo point    
+);
+
+
+INSERT INTO veterans(firstName, lastName, serviceNumber, rank, branch, militaryInfo, deployments, bio, bioExtended, primaryImage, otherImages, additionalLinks, deceased, deathDate, deathLocation , internmentLocation)
+    VALUES
+('Forester', 'Josefsen', MD5('588-38-5567'), 'E5', 'Airforce', 'Blue peacock', '', '', 'RutrumRutrumNeque.doc', '', '', '', 'FALSE', '', '', ''),
+('Audry', 'Rampley', MD5('514-78-0492'), 'O1', 'Army', 'King vulture', '', '', 'Volutpat.ppt', 'http://dummyimage.com/238x172.png/ffffff', '', '', 'FALSE', '', '', ''),
+('Mart', 'Downham', MD5('743-14-8987'), 'E3', 'Marines', 'Green-backed heron', 'Vietnam', 'Upgradable', '', '', '', '', 'TRUE', '43650', 'Indonesia', 'Netherlands'),
+('Ed', 'Fairfull', MD5('185-58-6175'), 'E4', 'National Guard', 'Vulture, oriental white-backed', 'Iraq', 'Operative', '', 'http://dummyimage.com/174x235.png/000000', 'http://dummyimage.com/104x139.png/ff4444', '/nunc/nisl.js?donec=pretium', 'TRUE', '43836', 'Philippines', 'Belarus'),
+('Case', 'Fluin', MD5('758-93-0653'), 'E1', 'Coast Guard', 'Fringe-eared oryx', '', '', 'In.ppt', 'http://dummyimage.com/132x129.png/ffffff', '', '', 'FALSE', '', '', ''),
+('Lanni', 'Dillinger', MD5('252-81-7701'), 'E3', 'Navy', 'Coatimundi, ring-tailed', 'Iraq', 'strategy', 'DiamCrasPellentesque.doc', 'http://dummyimage.com/168x216.png/ffffff', '', '', 'TRUE', '43700', 'Greece', 'Greece'),
+('Enrique', 'Willowby', MD5('732-38-1199'), 'O5', 'Air Force', 'Flicker, field', '', '', '', 'http://dummyimage.com/239x177.png/cc0000', '', '', 'FALSE', '', '', ''),
+('Mickie', 'Cinavas', MD5('137-15-0118'), 'O2', 'Army', 'Australian masked owl', '', '', '', 'http://dummyimage.com/151x102.png/ff4444', '', '', 'TRUE', '', '', ''),
+('Wilfrid', 'Coggings', MD5('506-32-2280'), 'O4', 'Air Force', 'Vulture, griffon', 'Special', 'Public-key', 'SitAmetSapien.pdf', 'http://dummyimage.com/187x164.png/ffffff', '', '', 'TRUE', '43663', 'Indonesia', 'Yemen'),
+('Carson', 'Hague', MD5('718-36-6402'), 'E2', 'Navy', 'King cormorant', '', '', '', 'http://dummyimage.com/152x152.png/dddddd', '', '', 'TRUE', '', '', '');
