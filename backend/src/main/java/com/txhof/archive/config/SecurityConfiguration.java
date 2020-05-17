@@ -28,7 +28,7 @@ public class SecurityConfiguration {
     @Order(2)
     public static class AngularResourcesWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/assets/images/**")                             
+            http.antMatcher("/images/*")                             
                 .authorizeRequests()
                 .anyRequest()
                 .permitAll();
@@ -41,7 +41,7 @@ public class SecurityConfiguration {
   
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/**")                             
+            http.antMatcher("/*")                             
                 .authorizeRequests()
                 .anyRequest()
                 .permitAll();
