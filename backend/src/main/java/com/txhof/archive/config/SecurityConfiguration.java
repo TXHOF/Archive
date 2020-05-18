@@ -28,7 +28,7 @@ public class SecurityConfiguration {
     @Order(2)
     public static class AngularResourcesWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/images/*")                             
+            http.antMatcher("/images/*").antMatcher("/files/*")                            
                 .authorizeRequests()
                 .anyRequest()
                 .permitAll();
