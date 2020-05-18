@@ -1,5 +1,11 @@
+/*the uuid extension to allow postgres to create the uuids.*/
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 DROP TABLE veterans;
+
+/*these two are used for textsearch*/
+DROP TRIGGER IF EXISTS tsvectorupdate ON veterans;
+DROP FUNCTION IF EXISTS tsupdate_trigger;
+
 CREATE TABLE veterans (
     uid uuid DEFAULT uuid_generate_v1(),
     firstName TEXT,
@@ -21,7 +27,7 @@ CREATE TABLE veterans (
     internmentGeo point    
 );
 
-
+/*insert dummy data.*/
 INSERT INTO veterans(firstName, lastName, serviceNumber, rank, branch, militaryInfo, deployments, bio, bioExtended, primaryImage, otherImages, additionalLinks, deceased, deathDate, deathLocation , internmentLocation)
     VALUES
 ('Forester', 'Josefsen', MD5('588-38-5567'), 'E5', 'Airforce', 'Blue peacock', '', '', 'RutrumRutrumNeque.doc', '', '', '', 'FALSE', '', '', ''),
@@ -34,3 +40,57 @@ INSERT INTO veterans(firstName, lastName, serviceNumber, rank, branch, militaryI
 ('Mickie', 'Cinavas', MD5('137-15-0118'), 'O2', 'Army', 'Australian masked owl', '', '', '', 'http://dummyimage.com/151x102.png/ff4444', '', '', 'TRUE', '', '', ''),
 ('Wilfrid', 'Coggings', MD5('506-32-2280'), 'O4', 'Air Force', 'Vulture, griffon', 'Special', 'Public-key', 'SitAmetSapien.pdf', 'http://dummyimage.com/187x164.png/ffffff', '', '', 'TRUE', '43663', 'Indonesia', 'Yemen'),
 ('Carson', 'Hague', MD5('718-36-6402'), 'E2', 'Navy', 'King cormorant', '', '', '', 'http://dummyimage.com/152x152.png/dddddd', '', '', 'TRUE', '', '', '');
+('Jim', 'Stagg', MD5('718-36-6901'), 'E4', 'Navy', 'Bearded dragon', '', '', '', 'http://dummyimage.com/152x151.png/ddffged', '', '', 'TRUE', '', '', '');
+
+/*creating the textsearch column.*/
+ALTER TABLE veterans ADD COLUMN ts_index_col tsvector;
+UPDATE veterans SET ts_index_col =
+    setweight(to_tsvector('pg_catalog.english', coalesce(firstName,'')), 'A') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(lastName,'')), 'A') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(rank,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(branch,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(militaryInfo,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(deployments,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(bio,'')), 'C') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(bioExtended,'')), 'C') ||
+    setweight(to_tsvector('pg_catalog.english', coalesce(deathDate,'')), 'D') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(deathLocation,'')), 'D') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(internmentLocation,'')), 'D');
+
+/*Creating the textsearch index*/
+CREATE INDEX textsearch_idx ON veterans USING GIN (ts_index_col);
+
+/*The function that runs on insert or update*/
+CREATE FUNCTION tsupdate_trigger() RETURNS trigger AS $$
+begin
+  new.ts_index_col :=
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.firstName,'')), 'A') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.lastName,'')), 'A') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.rank,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.branch,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.militaryInfo,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.deployments,'')), 'B') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.bio,'')), 'C') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.bioExtended,'')), 'C') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.deathDate,'')), 'D') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.deathLocation,'')), 'D') || 
+    setweight(to_tsvector('pg_catalog.english', coalesce(new.internmentLocation,'')), 'D');
+  return new;
+end
+$$ LANGUAGE plpgsql;
+
+/*Make it update the index on any insert or update*/
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
+    ON veterans FOR EACH ROW EXECUTE FUNCTION tsupdate_trigger();
+
+
+/*Test textsearch update trigger*/
+INSERT INTO veterans(firstName, lastName, serviceNumber, rank, branch, militaryInfo, deployments, bio, bioExtended, primaryImage, otherImages, additionalLinks, deceased, deathDate, deathLocation , internmentLocation)
+    VALUES
+('Jim', 'Stagg', MD5('718-36-6901'), 'E4', 'Navy', 'Bearded dragon', '', '', '', 'http://dummyimage.com/152x151.png/ddffged', '', '', 'TRUE', '', '', '');
+
+/*Test text search*/
+SELECT uid, firstName, lastName FROM veterans WHERE ts_index_col @@ to_tsquery('Jim');
+
+/*test websearch textsearch funcction originally i wanted to use this. it may return too little in most queries.*/ 
+SELECT uid, firstName, lastName FROM veterans WHERE ts_index_col @@ websearch_to_tsquery('english', 'navy general E3 dog');

@@ -1,5 +1,7 @@
 package com.txhof.archive.dao;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import com.txhof.archive.model.Vet;
@@ -14,7 +16,8 @@ public class VetDAOImpl implements VetDAO {
     JdbcTemplate jdbcTemplate;
 
 	private final String SQL_FIND_VET = "select * from veterans where uid = ?";
-	private final String SQL_DELETE_VET = "delete from veterans where uid = ?";
+    private final String SQL_DELETE_VET = "delete from veterans where uid = ?";
+    private final String SQL_SEARCH_VET = "SELECT * FROM veterans WHERE ts_index_col @@ websearch_to_tsquery('english', ?)";
 	//private final String SQL_UPDATE_VET = "update veterans set firstName = ?, lastName = ?, serviceNumber = ?, rank = ?, branch = ?, militaryInfo = ?, deployments = ?, bio = ?, bioExtended = ?, primaryImage = ?, otherImages = ?, additionalLinks = ?, deceased = ?, deathDate = ?, deathLocation = ?, internmentLocation = ?, internmentGeo = ? where uid = ?";
 	// private final String SQL_GET_ALL = "select * from veterans";
 	// private final String SQL_INSERT_VET = "insert into people(firstName, lastName, serviceNumber, rank, branch, militaryInfo, deployments, bio, bioExtended, primaryImage, otherImages, additionalLinks, deceased, deathDate, deathLocation, internmentLocation, internmentGeo) values (?,?,MD5('?'),?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -31,6 +34,10 @@ public class VetDAOImpl implements VetDAO {
     //TODO: TEST deleteVet
 	public boolean deleteVet(Vet vet){
         return jdbcTemplate.update(SQL_DELETE_VET, vet.getUid()) > 0;
+    }
+    
+    public List<Vet> textSearch(String text) {
+        return jdbcTemplate.query(SQL_SEARCH_VET, new Object [] {text}, new VetMapper());
     }
 
 
