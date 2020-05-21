@@ -8,7 +8,7 @@ import {LogInComponent} from "./log-in/log-in.component";
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
 		{ path: 'search', component: SearchPageComponent },
-			{ path: 'vrl', component: UniqueVRLComponent },
+			//{ path: 'vrl', component: UniqueVRLComponent },
 			{ path: 'vrl/:id', component: UniqueVRLComponent },
   {path: 'login', component: LogInComponent},
 

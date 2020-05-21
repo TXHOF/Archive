@@ -1,2 +1,10 @@
 <!--<p>{{veteran.id}} Veteran ID</p>
 <p>sup lol</p>-->
+
+<p>Test Text<p>
+<div *ngFor="let person of people$ | async">
+  <div class="card">
+    <h4>{{ person.firstName }} {{ person.lastName }}</h4><!--// - Age: {{ person.age }-->
+  </div>
+  <br>
+</div>
