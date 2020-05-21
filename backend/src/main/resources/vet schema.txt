@@ -1,6 +1,6 @@
 /*the uuid extension to allow postgres to create the uuids.*/
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-DROP TABLE veterans;
+DROP TABLE IF EXISTS veterans;
 
 /*these two are used for textsearch*/
 DROP TRIGGER IF EXISTS tsvectorupdate ON veterans;
@@ -40,7 +40,7 @@ INSERT INTO veterans(firstName, lastName, serviceNumber, rank, branch, militaryI
 ('Mickie', 'Cinavas', MD5('137-15-0118'), 'O2', 'Army', 'Australian masked owl', '', '', '', 'http://dummyimage.com/151x102.png/ff4444', '', '', 'TRUE', '', '', ''),
 ('Wilfrid', 'Coggings', MD5('506-32-2280'), 'O4', 'Air Force', 'Vulture, griffon', 'Special', 'Public-key', 'SitAmetSapien.pdf', 'http://dummyimage.com/187x164.png/ffffff', '', '', 'TRUE', '43663', 'Indonesia', 'Yemen'),
 ('Carson', 'Hague', MD5('718-36-6402'), 'E2', 'Navy', 'King cormorant', '', '', '', 'http://dummyimage.com/152x152.png/dddddd', '', '', 'TRUE', '', '', '');
-('Jim', 'Stagg', MD5('718-36-6901'), 'E4', 'Navy', 'Bearded dragon', '', '', '', 'http://dummyimage.com/152x151.png/ddffged', '', '', 'TRUE', '', '', '');
+
 
 /*creating the textsearch column.*/
 ALTER TABLE veterans ADD COLUMN ts_index_col tsvector;
