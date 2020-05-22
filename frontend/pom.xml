@@ -13,6 +13,9 @@
 	<name>frontend</name>
 	<description>frontend angular module for Veteran Archive Project</description>
 
+	<properties>
+		<java.version>11</java.version>
+	</properties>
 
 	<build>
 		<plugins>

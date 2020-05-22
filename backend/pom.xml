@@ -13,6 +13,10 @@
 	<description>backend spring boot module for Veteran Archive Project</description>
 	<packaging>war</packaging>
 	
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
