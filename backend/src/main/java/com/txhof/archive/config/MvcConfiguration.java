@@ -14,6 +14,32 @@ public class MvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/images/*")
+                .addResourceLocations("classpath:/images/")
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver(){
+                    @Override
+                    protected Resource getResource(String resourcePath, Resource location) throws IOException {
+                        Resource requestedResource = location.createRelative(resourcePath);
+                        
+                        return requestedResource.exists() && requestedResource.isReadable() ? requestedResource 
+                                : new ClassPathResource("/images/404.png");
+                    }
+                });
+
+                registry.addResourceHandler("/files/*")
+                .addResourceLocations("classpath:/files/")
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver(){
+                    @Override
+                    protected Resource getResource(String resourcePath, Resource location) throws IOException {
+                        Resource requestedResource = location.createRelative(resourcePath);
+                        
+                        return requestedResource.exists() && requestedResource.isReadable() ? requestedResource 
+                                : new ClassPathResource("/files/test.pdf");
+                    }
+                });
+        
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/")
                 .resourceChain(true)
@@ -21,7 +47,8 @@ public class MvcConfiguration implements WebMvcConfigurer {
                     @Override
                     protected Resource getResource(String resourcePath, Resource location) throws IOException {
                         Resource requestedResource = location.createRelative(resourcePath);
- 
+                        
+                        
                         return requestedResource.exists() && requestedResource.isReadable() ? requestedResource
                                 : new ClassPathResource("/static/index.html");
                     }
