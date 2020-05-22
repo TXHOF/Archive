@@ -15,6 +15,7 @@ import { UniqueVRLComponent } from './unique-vrl/unique-vrl.component';
 import {LogInComponent} from "./log-in/log-in.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import { FormsModule } from '@angular/forms';
+import {Mock404Component} from './mock404/mock404.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     LandingPageComponent,
     SearchPageComponent,
     UniqueVRLComponent,
-    LogInComponent
+    LogInComponent,
+    Mock404Component
   ],
   imports: [
 
