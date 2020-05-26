@@ -7,11 +7,14 @@
 /tmp
 /out-tsc
 /src/node
+
 # Only exists if Bazel was run
 /bazel-out
 
 # dependencies
 /node_modules
+/frontend/node_modules
+/frontend/src/node
 
 # profiling files
 chrome-profiler-events*.json
