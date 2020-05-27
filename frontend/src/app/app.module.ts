@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, Injectable } from '@angular/core';
+import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,17 @@ import {LogInComponent} from "./log-in/log-in.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import {Mock404Component} from './mock404/mock404.component';
+
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 
 @NgModule({
   declarations: [

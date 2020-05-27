@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, Inject } from '@angular/core';
 import { of } from "rxjs";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
@@ -6,6 +6,7 @@ import { tap, map } from "rxjs/operators";
 import { ActivatedRoute } from '@angular/router';
 import { VrlServService } from './vrl-serv.service';
 import { Person	} from '../../Veteran';
+import { AppService } from '../app.service';
 
 /*const source = of(1, 2, 3, 4, 5);
 
@@ -38,7 +39,8 @@ export class UniqueVRLComponent implements OnInit {
 	//veteransObservable : Observable<veteran[]>;
 
   constructor(
-  private veteranService: VrlServService,
+    @Inject(AppService) private app:AppService,
+  //private veteranService: VrlServService,
   private httpClient:HttpClient,
   private activeRoute: ActivatedRoute) { }
 
@@ -49,7 +51,7 @@ export class UniqueVRLComponent implements OnInit {
         if (id == null){
           id = '-1';
         }        
-        this.people$ = this.veteranService.getPerson(id);
+        this.people$ = this.app.getPerson(id);
 		
 	  });
 		
