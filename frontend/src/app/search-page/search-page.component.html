@@ -1,6 +1,7 @@
 <!-- search form -->
 <form class="form-inline md-form form-sm">
-  <input class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Veteran Name" aria-label="Search" mdbInput>
-  <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+  <input (keyup)="onKey($event)" name='values' class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Veteran Name" [(ngModel)] = 'values' aria-label="Search" mdbInput>
+  <!--<mdb-icon fas icon="search" (click) = OnSubmit($event) aria-hidden="true"></mdb-icon> -->
+  <button name="search" (click)= "onSubmit()"></button>
 </form>
 <router-outlet></router-outlet>
