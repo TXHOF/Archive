@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic()	//.formLogin().loginPage("/login").successForwardUrl("/user").and().logout()
         .and()
             .authorizeRequests()
-            .antMatchers("/api/search*", "/api/vrl*", "/index.html", "/", "/home", "/user", "/assets/images/*", "/*.png", "/*.woff2", "/*.jpg", "/*.ico", "/*.js", "/*.js.map", "/*.map").permitAll() //.hasAnyRole("USER", "ADMIN", "ANONYMOUS")
+            .antMatchers("/api/search*", "/api/vrl*", "/uuid/*", "/index.html", "/", "/home", "/user", "/assets/images/*", "/*.png", "/*.woff2", "/*.jpg", "/*.ico", "/*.js", "/*.js.map", "/*.map").permitAll() //.hasAnyRole("USER", "ADMIN", "ANONYMOUS")
             .and().authorizeRequests().anyRequest().authenticated().and().csrf()
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         http.sessionManagement()

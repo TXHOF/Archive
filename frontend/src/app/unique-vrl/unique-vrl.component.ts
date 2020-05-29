@@ -27,16 +27,14 @@ export class UniqueVRLComponent implements OnInit {
   private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
-	  this.activeRoute.paramMap.subscribe(paramMap => {
+    this.activeRoute.paramMap.subscribe(paramMap => {
         console.log(paramMap);
         let id = paramMap.get('id');
         if (id == null){
           id = '-1';
         }        
         this.people$ = this.app.getPerson(id);
-	  
-	  });
-	
+    });
   }
 
 }

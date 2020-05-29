@@ -16,7 +16,6 @@ const routes: Routes = [
 		{ path: 'login', component: LogInComponent },
 		{ path: 'mock404', component: Mock404Component },
 		{ path: '**', redirectTo: 'mock404' },
-
 	];
 
 @NgModule({
