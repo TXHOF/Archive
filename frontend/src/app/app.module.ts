@@ -16,6 +16,7 @@ import {LogInComponent} from "./log-in/log-in.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import {Mock404Component} from './mock404/mock404.component';
+import { UuidSearchComponent } from './uuid-search/uuid-search.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {Mock404Component} from './mock404/mock404.component';
     SearchPageComponent,
     UniqueVRLComponent,
     LogInComponent,
-    Mock404Component
+    Mock404Component,
+    UuidSearchComponent
   ],
   imports: [
 

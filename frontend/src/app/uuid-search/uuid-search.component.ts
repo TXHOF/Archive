@@ -4,37 +4,35 @@ import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { tap, map } from "rxjs/operators";
 import { ActivatedRoute } from '@angular/router';
-import { VrlServService } from './vrl-serv.service';
+import { UuidServService } from './uuid-serv.service';
 import { Person	} from '../../Veteran';
 
-
 @Component({
-  selector: 'app-unique-vrl',
-  templateUrl: './unique-vrl.component.html',
-  styleUrls: ['./unique-vrl.component.css']
-  })
+  selector: 'app-uuid-search',
+  templateUrl: './uuid-search.component.html',
+  styleUrls: ['./uuid-search.component.css']
+})
+export class UuidSearchComponent implements OnInit {
 
-export class UniqueVRLComponent implements OnInit {
-	
 	people$: Observable<Person[]>;
-	
 
   constructor(
-  private veteranService: VrlServService,
+  private uuidService: UuidServService,
   private httpClient:HttpClient,
-  private activeRoute: ActivatedRoute) {}
+  private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
+	  
 	  this.activeRoute.paramMap.subscribe(paramMap => {
         console.log(paramMap);
-        let id = paramMap.get('id');
-        if (id == null){
-          id = '-1';
+        let uuid = paramMap.get('id');
+        if (uuid == null){
+          uuid = '-1';
         }        
-        this.people$ = this.veteranService.getPerson(id);
+        this.people$ = this.uuidService.getPersonUUID(uuid);
 	  
 	  });
-	
+	  
   }
 
 }
