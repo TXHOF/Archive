@@ -8,14 +8,14 @@ import { Mock404Component } from './mock404/mock404.component';
 import { UuidSearchComponent } from './uuid-search/uuid-search.component';
 
 const routes: Routes = [
-	{ path: '', component: LandingPageComponent },
+		{ path: '', component: LandingPageComponent },
 		{ path: 'search', component: SearchPageComponent },
-			//{ path: 'vrl', component: UniqueVRLComponent },
-			{ path: 'vrl/:id', component: UniqueVRLComponent },
-				{ path: 'uuid/:id', component: UuidSearchComponent },
-  {path: 'login', component: LogInComponent},
-  {path: 'mock404', component: Mock404Component},
-  {path: '**', redirectTo: 'mock404'},
+		//{ path: 'vrl', component: UniqueVRLComponent },
+		{ path: 'vrl/:id', component: UniqueVRLComponent },
+		{ path: 'uuid/:id', component: UuidSearchComponent },
+		{ path: 'login', component: LogInComponent },
+		{ path: 'mock404', component: Mock404Component },
+		{ path: '**', redirectTo: 'mock404' },
 
 	];
 

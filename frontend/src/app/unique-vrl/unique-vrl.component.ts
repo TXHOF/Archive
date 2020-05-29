@@ -6,6 +6,7 @@ import { tap, map } from "rxjs/operators";
 import { ActivatedRoute } from '@angular/router';
 import { VrlServService } from './vrl-serv.service';
 import { Person	} from '../../Veteran';
+import { AppService } from '../app.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class UniqueVRLComponent implements OnInit {
 	
 
   constructor(
-  private veteranService: VrlServService,
+ // private veteranService: VrlServService,
+  private app: AppService,
   private httpClient:HttpClient,
   private activeRoute: ActivatedRoute) {}
 
@@ -31,7 +33,7 @@ export class UniqueVRLComponent implements OnInit {
         if (id == null){
           id = '-1';
         }        
-        this.people$ = this.veteranService.getPerson(id);
+        this.people$ = this.app.getPerson(id);
 	  
 	  });
 	

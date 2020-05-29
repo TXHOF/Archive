@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
+import { NgModule, Injectable } from '@angular/core';
+import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
+ 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -17,6 +17,18 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import {Mock404Component} from './mock404/mock404.component';
 import { UuidSearchComponent } from './uuid-search/uuid-search.component';
+import { AppService } from './app.service';
+
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -26,22 +38,23 @@ import { UuidSearchComponent } from './uuid-search/uuid-search.component';
     UniqueVRLComponent,
     LogInComponent,
     Mock404Component,
+    //AppService,
     UuidSearchComponent
   ],
   imports: [
 
     BrowserModule,
-	HttpClientModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-	MatSliderModule,
-	MatToolbarModule,
-	MDBBootstrapModule.forRoot(),
-	MatMenuModule,
+    MatSliderModule,
+    MatToolbarModule,
+    MDBBootstrapModule.forRoot(),
+    MatMenuModule,
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AppService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

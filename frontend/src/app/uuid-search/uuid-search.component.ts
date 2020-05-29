@@ -6,6 +6,7 @@ import { tap, map } from "rxjs/operators";
 import { ActivatedRoute } from '@angular/router';
 import { UuidServService } from './uuid-serv.service';
 import { Person	} from '../../Veteran';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-uuid-search',
@@ -17,7 +18,8 @@ export class UuidSearchComponent implements OnInit {
 	people$: Observable<Person[]>;
 
   constructor(
-  private uuidService: UuidServService,
+  private app: AppService,
+  //private uuidService: UuidServService,
   private httpClient:HttpClient,
   private activeRoute: ActivatedRoute) { }
 
@@ -29,8 +31,7 @@ export class UuidSearchComponent implements OnInit {
         if (uuid == null){
           uuid = '-1';
         }        
-        this.people$ = this.uuidService.getPersonUUID(uuid);
-	  
+        this.people$ = this.app.getPersonUUID(uuid);
 	  });
 	  
   }

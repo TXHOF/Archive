@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -9,10 +11,14 @@ export class SearchPageComponent implements OnInit {
 	values = '';
 	
 	onKey(event:any) {
-		this.values += event.target.value + ' | ';
-	}
+		//this.values += event.target.value + ' | ';
+  }
+  
+  constructor(private app: AppService, private _route: ActivatedRoute, private _router: Router) { }
 
-  constructor() { }
+  onSubmit(){
+        this._router.navigateByUrl('vrl/' + this.values);
+    }
 
   ngOnInit(): void {
   }
