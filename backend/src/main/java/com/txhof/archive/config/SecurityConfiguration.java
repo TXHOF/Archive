@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 
 @EnableWebSecurity
@@ -15,38 +16,41 @@ public class SecurityConfiguration {
     @Configuration
     @Order(1)                                                        
     public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                .antMatcher("/api/**")                             
-                .authorizeRequests()
-                .anyRequest()
-                .permitAll();
-        }
-    }
-    
-    @Configuration
-    @Order(2)
-    public static class AngularResourcesWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
-        protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/images/*").antMatcher("/files/*")                            
-                .authorizeRequests()
-                .anyRequest()
-                .permitAll();
-        }
-    }
-    
-    @Configuration     
-    @Order(3)  
-    public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-  
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/*")                             
-                .authorizeRequests()
-                .anyRequest()
-                .permitAll();
-        };
+            http.httpBasic().disable();
+            http.authorizeRequests()
+                .antMatchers("/search*", "/vrl*", "/files/*", "/images/*")
+                .permitAll().and()
+                .authorizeRequests().anyRequest().authenticated();
+            http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.NEVER);
+        }
     }
+    
+    // @Configuration
+    // @Order(2)
+    // public static class AngularResourcesWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
+    //     protected void configure(HttpSecurity http) throws Exception {
+    //         http.antMatcher("/images/*").antMatcher("/files/*")                            
+    //             .authorizeRequests()
+    //             .anyRequest()
+    //             .permitAll();
+    //     }
+    // }
+    
+    // @Configuration     
+    // @Order(3)  
+    // public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
+  
+    //     @Override
+    //     protected void configure(HttpSecurity http) throws Exception {
+    //         http.antMatcher("/*")                             
+    //             .authorizeRequests()
+    //             .anyRequest()
+    //             .permitAll();
+    //     };
+    // }
     
 
     

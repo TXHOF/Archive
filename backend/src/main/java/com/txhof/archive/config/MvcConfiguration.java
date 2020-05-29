@@ -40,25 +40,20 @@ public class MvcConfiguration implements WebMvcConfigurer {
                     }
                 });
         
-        registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/")
-                .resourceChain(true)
-                .addResolver(new PathResourceResolver() {
-                    @Override
-                    protected Resource getResource(String resourcePath, Resource location) throws IOException {
-                        Resource requestedResource = location.createRelative(resourcePath);
+        // registry.addResourceHandler("/**")
+        //         .addResourceLocations("classpath:/static/")
+        //         .resourceChain(true)
+        //         .addResolver(new PathResourceResolver() {
+        //             @Override
+        //             protected Resource getResource(String resourcePath, Resource location) throws IOException {
+        //                 Resource requestedResource = location.createRelative(resourcePath);
                         
                         
-                        return requestedResource.exists() && requestedResource.isReadable() ? requestedResource
-                                : new ClassPathResource("/static/index.html");
-                    }
-                });
+        //                 return requestedResource.exists() && requestedResource.isReadable() ? requestedResource
+        //                         : new ClassPathResource("/static/index.html");
+        //             }
+        //         });
             }
-    
-    // @Override
-    // public void addViewControllers(final ViewControllerRegistry registry) {
-    //     registry.addViewController("/index.html");
-    // }
 
 
     // @Override
