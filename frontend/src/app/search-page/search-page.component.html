@@ -1,6 +1,7 @@
 <!-- search form -->
 <form class="form-inline md-form form-sm">
-  <input class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Veteran Name" aria-label="Search" mdbInput>
+  <input #box (keyup)="0" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Veteran Name" aria-label="Search" mdbInput>
   <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+  {{values}}
 </form>
 <router-outlet></router-outlet>

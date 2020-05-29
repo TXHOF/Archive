@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { AppService } from '../app.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-search-page',
@@ -7,8 +6,13 @@ import { AppService } from '../app.service';
   styleUrls: ['./search-page.component.css']
 })
 export class SearchPageComponent implements OnInit {
+	values = '';
+	
+	onKey(event:any) {
+		this.values += event.target.value + ' | ';
+	}
 
-  constructor(private app:AppService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
