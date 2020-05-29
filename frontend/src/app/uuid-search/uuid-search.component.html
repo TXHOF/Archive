@@ -1,12 +1,12 @@
-<app-search-page></app-search-page>
+
 
 <div *ngFor="let person of people$ | async">
 <!--Need to include something about what the search query was-->
   <div class="card">
     <h2>{{ person.lastName }},{{ person.firstName }}</h2>
-	<div *ngIf ="militaryInfo1"> <!-- only shown when true -->
+	
 	<h3>Rank: {{ person.rank }} | Branch: {{ person.branch }} | <!--<div *ngIf = "person.militaryInfo == """>--> Military Information: {{ person.militaryInfo }}<!--</div>--> | Deployments: {{ person.deployments }}</h3>
-	</div>
+	
 	<!--Some veterans will not have the same information as others (Deceased, bioExtended, internmentLocation, etc).-->
 	<div id="image"> <!--imageurl = localhost:8080/images/... -->
 		
