@@ -1,4 +1,4 @@
-package com.txvhof.archive.gateway;
+package com.txvhof.archive.gateway.config;
 
 import javax.sql.DataSource;
 

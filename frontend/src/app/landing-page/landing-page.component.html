@@ -1,102 +1,129 @@
 <style>
-	.toolbar{
-		
-	}
-	
-	.backgroundImage {
-	position: relative;
-	text-align: center;
-	opacity: .5
-	}
+  .toolbar {
+  }
 
-	/* Centered text */
-	.centered {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-transform: uppercase;
-	color: black;
-	font-size: 75px;
-	font-weight: bold;
-	line-height: 1.2;
-	}
+  .backgroundImage {
+    position: relative;
+    text-align: center;
+    opacity: 0.5;
+  }
 
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    color: black;
+    font-size: 75px;
+    font-weight: bold;
+    line-height: 1.2;
+  }
 </style>
 <!-- change -->'
 
 <!--<p>This is modified by "landing page"</p> -->
 
 <div class="toolbar">
-<mat-toolbar color="primary">  
-  <mat-toolbar-row>
-  <!-- logo needs to be transparent or background needs to be white" -->
-    <img src="assets/images/tvhof_logo.jpg" height="70"> 
-  </mat-toolbar-row>
-  <mat-toolbar-row>
-	<button mat-button [matMenuTriggerFor]="menu">Menu</button>
-	<mat-menu #menu="matMenu">
-	<button mat-menu-item routerLink="/search" routerLinkActive="active">Search Page</button>
-	<button mat-menu-item routerLink="/vrl" routerLinkActive="active">VRL</button>
-	<button mat-menu-item routerLink="/login" routerLinkActive="active">Login</button>
-	</mat-menu>
-	
-	
-
-	</mat-toolbar-row>
-</mat-toolbar>
-
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <!-- logo needs to be transparent or background needs to be white" -->
+      <img src="assets/images/tvhof_logo.jpg" height="70" />
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/search" routerLinkActive="active">
+          Search Page
+        </button>
+        <button mat-menu-item routerLink="/vrl" routerLinkActive="active">
+          VRL
+        </button>
+        <button mat-menu-item routerLink="/login" routerLinkActive="active">
+          Login
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+    <!--Search bar-->
+    <!-- <form class="form-inline md-form form-sm">
+      <input
+        class="form-control form-control-sm mr-3 w-75"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+        mdbInput
+      />
+      <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+    </form> -->
+  </mat-toolbar>
 </div>
-
+<app-search-page></app-search-page>
 <div class="backgroundImage">
-  <img src="https://klendalaw.com/wp-content/uploads/2018/11/Veterans-Day-500x281.jpg" style="width:100%">
+  <img
+    src="https://klendalaw.com/wp-content/uploads/2018/11/Veterans-Day-500x281.jpg"
+    style="width: 100%;"
+  />
   <div class="centered">Welcome to Texas Veterans Hall of Fame</div>
 </div>
 
-
 <!-- Footer -->
 <footer class="page-footer font-small purple darken-4">
-
-    <!-- Footer Elements -->
-    <div class="container">
-
-      <!-- Grid row-->
-      <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-md-12 py-5">
-          <div class="mb-5 flex-center">
-
-            <!-- Facebook -->
-            <a class="fb-ic">
-              <mdb-icon fab icon="facebook" size="2x" class="white-text mr-md-5 mr-3"></mdb-icon>
-            </a>
-            <!-- Twitter -->
-            <a class="tw-ic">
-                <mdb-icon fab icon="twitter" size="2x" class="white-text mr-md-5 mr-3"></mdb-icon>
-            </a>
-            <a class="li-ic">
-                <mdb-icon fab icon="linkedin" size="2x" class="white-text mr-md-5 mr-3"></mdb-icon>
-            </a>
-            <!--Instagram-->
-            <a class="ins-ic">
-                <mdb-icon fab icon="instagram" size="2x" class="white-text mr-md-5 mr-3"></mdb-icon>
-            </a>
-          </div>
+  <!-- Footer Elements -->
+  <div class="container">
+    <!-- Grid row-->
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col-md-12 py-5">
+        <div class="mb-5 flex-center">
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <mdb-icon
+              fab
+              icon="facebook"
+              size="2x"
+              class="white-text mr-md-5 mr-3"
+            ></mdb-icon>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <mdb-icon
+              fab
+              icon="twitter"
+              size="2x"
+              class="white-text mr-md-5 mr-3"
+            ></mdb-icon>
+          </a>
+          <a class="li-ic">
+            <mdb-icon
+              fab
+              icon="linkedin"
+              size="2x"
+              class="white-text mr-md-5 mr-3"
+            ></mdb-icon>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <mdb-icon
+              fab
+              icon="instagram"
+              size="2x"
+              class="white-text mr-md-5 mr-3"
+            ></mdb-icon>
+          </a>
         </div>
-        <!-- Grid column -->
-
       </div>
-      <!-- Grid row-->
-
+      <!-- Grid column -->
     </div>
-    <!-- Footer Elements -->
+    <!-- Grid row-->
+  </div>
+  <!-- Footer Elements -->
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright: Texas Veterans Hall of Fame - All Rights Reserved</div>
-    <!-- Copyright -->
-
-  </footer>
-  <!-- Footer -->
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    © 2020 Copyright: Texas Veterans Hall of Fame - All Rights Reserved
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 <router-outlet></router-outlet>
-

@@ -1,2 +1,16 @@
-<!--<p>{{veteran.id}} Veteran ID</p>
-<p>sup lol</p>-->
+<app-search-page></app-search-page>
+
+<div *ngFor="let person of people$ | async">
+<!--Need to include something about what the search query was-->
+  <div class="card">
+    <h2>{{ person.lastName }},{{ person.firstName }}</h2>
+	<h3>Rank: {{ person.rank }} | Branch: {{ person.branch }} | Military Information: {{ person.militaryInfo }} | Deployments: {{ person.deployments }}</h3>
+	<!--Some veterans will not have the same information as others (Deceased, bioExtended, internmentLocation, etc).-->
+	<div id="image"> <!--imageurl = localhost:8080/images/... -->
+		
+	</div>
+	<h4>Bio: {{ person.bio }} | For more biographical information see:  {{ person.bioExtended }}</h4>
+	<p>For additional Information: {{ person.additionalLinks }}
+  </div>
+  <br>
+</div>

@@ -19,7 +19,7 @@ public class SearchService {
     @Autowired
     private ApplicationContext appContext;
 
-    @GetMapping("/api")
+    @GetMapping("/search")
     public @ResponseBody List<Vet> searchHandler (@RequestParam(value="searchTerms", defaultValue="") String searchTerms) {
         VetDAO vetDAO = appContext.getBean(VetDAO.class);
         if (searchTerms.equals("")){

@@ -1,10 +1,53 @@
-<label>
+<!--<label>
   username:
-  <input type="text" placeholder="username"><!--[formControl]="username" -->
+  <input type="text" placeholder="username"> [formControl]="username"
 </label>
 
 <label>
   password:
-  <input type="text" placeholder="password"><!--[formControl]="username" -->
-</label>
+  <input type="text" placeholder="password">[formControl]="username"
+</label>-->
 
+<div class="alert alert-danger" [hidden]="!error">
+	There was a problem logging in. Please try again.
+</div>
+<form role="form" (submit)="login()">
+  <div class="form-group">
+      <label for="username">Username:</label> <input type="text"
+          class="form-control" id="username" name="username" [(ngModel)]="credentials.username"/>
+  </div>
+  <div class="form-group">
+      <label for="password">Password:</label> <input type="password"
+          class="form-control" id="password" name="password" [(ngModel)]="credentials.password"/>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!-- 
+<div class="login">
+  <h1>Login to Texas Veterans Hall of Fame</h1>
+  <form role="form" (submit)="login()">
+    <p>
+      <input
+        type="text"
+        name="login"
+        value=""
+        placeholder="Username or Email"
+      />
+    </p>
+    <p>
+      <input type="password" name="password" value="" placeholder="Password" />
+    </p>
+    <p class="remember_me">
+      <label>
+        <input type="checkbox" name="remember_me" id="remember_me" />
+        Remember me
+      </label>
+    </p>
+    <p class="submit"><input type="submit" name="commit" value="Login" /></p>
+  </form>
+</div>
+
+<div class="login-help">
+  <p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+</div> -->
